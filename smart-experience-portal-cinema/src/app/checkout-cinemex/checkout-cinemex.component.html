@@ -1,0 +1,181 @@
+<div class="jumbotron" style="background-color: black; background-image: url('assets/img/fondo-izquierda.jpeg'), url('assets/img/fondo-derecha.jpeg'); background-position: left top, right top; background-repeat: no-repeat;">
+  <div class="container" style="background-color: white;">
+    <nav aria-label="breadcrumb" >
+      <ol class="breadcrumb" style="background-color: white;">
+        <li class="breadcrumb-item">Iniciow</li>
+        <li class="breadcrumb-item">AVES DE PRESA (Y LA FANA...</li>
+        <li class="breadcrumb-item active" aria-current="page">CHECKOUT</li>
+      </ol>
+    </nav>
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <div class="col-12">
+          <button class="btn btn-block btn-danger">
+          <span class="">
+            <fa-icon [icon]="faVideo" ></fa-icon>
+          </span>
+            &nbsp;
+            <span class="">Detalle de compra</span>
+          </button>
+        </div>
+        <div class="col-12">&nbsp;</div>
+        <div class="col-12">
+          <img class="img-fluid" src="assets/img/poster-movie-cinemex.jpg">
+        </div>
+        <div class="col-12">&nbsp;</div>
+        <div class="col-12">
+          <span class="text-danger">Título:</span>&nbsp;<span>Aves de Presa (y la Fantabulosa Emancipación de una Harley Quinn)</span>
+        </div>
+        <div class="col-12">
+          <span class="text-danger">Clasificación:</span>&nbsp;<span>B15</span>
+        </div>
+        <div class="col-12">
+          <span class="text-danger">Versión:</span>&nbsp;<span>Español, Tradicional</span>
+        </div>
+        <div class="col-12">
+          <span class="text-danger">Día:</span>&nbsp;<span>Jueves 13 de febrero</span>
+        </div>
+        <div class="col-12">
+          <span class="text-danger">Horario:</span>&nbsp;<span>02:05 PM</span>
+        </div>
+        <div class="col-12">
+          <span class="text-danger">Cine:</span>&nbsp;<span>Cinemex Centro Telmex</span>
+        </div>
+        <div class="col-12">
+          <span class="text-danger">Sala:</span>&nbsp;<span>6</span>
+        </div>
+        <div class="col-12">
+          <span class="text-danger">Tus boletos:</span>
+          <br>
+          <div class="row">
+            <div class="col-1">
+              <fa-icon [icon]="faPen" (click)="showInputBoletoAdulto()" size="xs"></fa-icon>
+            </div>
+            <div class="col-10">
+              <input class="form-control" (change)="updateFieldBoletoAdulto($event)" type="number" [value]="boletoAdulto"  *ngIf="!statusShowInputBoletoAdulto" min="0" >&nbsp;
+              <span *ngIf="statusShowInputBoletoAdulto">{{boletoAdulto}} Adulto</span><br>
+            </div>
+            <div class="col-1">
+              <fa-icon [icon]="faPen" (click)="showInputBoletoMayor60()" size="xs"></fa-icon>
+            </div>
+            <div class="col-10">
+              <input class="form-control" (change)="updateFieldBoletoMayor60($event)" type="number" [value]="boletoMayor60"  *ngIf="!statusShowInputBoletoMayor60" min="0" >&nbsp;
+              <span *ngIf="statusShowInputBoletoMayor60">{{boletoMayor60}} Mayor 60</span><br>
+            </div>
+            <div class="col-1">
+              <fa-icon [icon]="faPen" (click)="showInputBoletoMenor()" size="xs"></fa-icon>
+            </div>
+            <div class="col-10">
+              <input class="form-control" (change)="updateFieldBoletoMenor($event)" type="number" [value]="boletoMenor"  *ngIf="!statusShowInputBoletoMenor" min="0" >&nbsp;
+              <span *ngIf="statusShowInputBoletoMenor">{{boletoMenor}} Menor</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-12">
+              <button class="btn btn-danger btn-block" (click)="checkout()">Aceptar</button>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="card bg-primary">
+          <div class="card-body text-light">
+            <span class="h3">Total a pagar:</span>
+            <br>
+            <span class="h3">${{totalPagar}}</span>
+            <br>
+            <span class="h6">Tus boletos:</span>
+            <br>
+            <span class="h6">${{totalBoletos}}</span>
+            <br>
+            <span class="h6">Costo por servicio:</span>
+            <br>
+            <span class="h6">${{costoServicio}}</span>
+          </div>
+        </div>
+        <div class="row">
+          &nbsp;
+        </div>
+      </div>
+      <div class="col-12 col-md-9">
+        <div class="row">
+          <div class="col-3">
+            <button class="btn btn-block btn-success">
+          <span class="">
+            <fa-icon [icon]="faCheck" ></fa-icon>
+          </span>
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-block btn-success">
+          <span class="">
+            <fa-icon [icon]="faCheck" ></fa-icon>
+          </span>
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-block btn-success">
+          <span class="">
+            <fa-icon [icon]="faCheck" ></fa-icon>
+          </span>
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-block btn-light">
+              <span class="">Detalles de pago</span>
+            </button>
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <span class="h3 text-danger">Detalles de pago</span>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="row">
+              <div class="col-6">
+                <span class="small text-danger">Tiempo Restante para Realizar la Compra</span>
+              </div>
+              <div class="col-6" style="margin">
+                <countdown class="text-danger font-countdown h3 text-center align-middle" [config]="{leftTime: 420, format: 'mm:ss'}"></countdown>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="height: 60%;">
+          <div class="col-12">
+            <iframe id="iframeCheckout" [src]="linkData" style="width: 100%; height: 100%; border: unset;"></iframe>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
+            <label class="form-check-label text-danger" for="defaultCheck1">
+              Recibir información de compra por SMS
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <label for="numeroTelefono">Número de celular</label>
+            <input id="numeroTelefono" class="form-control" type="tel" placeholder="55-1234-1234">
+          </div>
+          <div class="col-12 col-md-6">
+            <label for="selectOperadora">Operadora</label>
+            <select id="selectOperadora" class="form-control">
+              <option value="">Operadora</option>
+              <option value="">Telcel</option>
+              <option value="">Movistar</option>
+              <option value="">Unefon</option>
+              <option value="">AT&T</option>
+            </select>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
