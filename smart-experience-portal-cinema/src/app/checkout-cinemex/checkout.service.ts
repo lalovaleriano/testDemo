@@ -10,6 +10,7 @@ export class CheckoutService {
   constructor(private http:HttpClient) { }
 
   conectaLinkExternal(json: LinkJson) {
+    console.log("esta llaamando a un metodo");
     const urlEndpoint = 'http://localhost:8080/api/linkExternalConfig';
     const httpHeaders = new HttpHeaders({
      'Content-Type': 'application/json'

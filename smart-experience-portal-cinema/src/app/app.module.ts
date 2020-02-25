@@ -12,12 +12,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule} from '@angular/forms';
 import { CheckoutCinemexComponent } from './checkout-cinemex/checkout-cinemex.component';
 import { CountdownModule } from 'ngx-countdown';
+import { DetalleComponent } from './detalle/detalle.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,    
-    CheckoutCinemexComponent
+    CheckoutCinemexComponent, DetalleComponent,
     
   ],
   imports: [

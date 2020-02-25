@@ -3,6 +3,9 @@ import { faCheck, faVideo, faPen } from '@fortawesome/free-solid-svg-icons';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import { LinkJson } from './link-json';
 import { CheckoutService } from './checkout.service';
+import { FormsModule } from '@angular/forms';
+import Swal from "sweetalert2";
+import { Router } from '@angular/router';
 /* import {CheckoutServiceService} from '../checkout/checkout-service.service';
 import {LinkJson} from '../checkout/link-json'; */
 
@@ -13,6 +16,18 @@ import {LinkJson} from '../checkout/link-json'; */
 })
 export class CheckoutCinemexComponent implements OnInit {
 
+  
+
+  flagNumber:number;
+  flagNumber2:number;
+  testUrl :string = './test.html';
+  lista2:any[]=[
+    {id:1,status:'Exitoso'},
+    {id:21,status:'Fallido'},
+    {id:3,status:'Rechazado'}
+  ];
+  lista:string[]=["Exitoso","Fallido","Rechazado"];
+  seleccionado:string;
   faVideo = faVideo;
   faCheck = faCheck;
   faPen = faPen;
@@ -33,29 +48,108 @@ export class CheckoutCinemexComponent implements OnInit {
   statusShowInputBoletoMayor60 = true;
   statusShowInputBoletoMenor = true;
 
-  constructor(private checkoutServiceService: CheckoutService, private sanitizer: DomSanitizer) { }
+  constructor(
+    private router:Router,
+    private checkoutServiceService: CheckoutService,
+     private sanitizer: DomSanitizer   
+      ) { }
 
   ngOnInit() {
   }
 
-  checkout() {
-    this.objLinkJson = new LinkJson();
-    this.objLinkJson.emailPaymentNotification = 'emailPaymentNotification@Gmail.com';
-    this.objLinkJson.amount = this.totalPagar;
-    this.objLinkJson.products = 'products';
-    this.objLinkJson.emails = 'emailPaymentNotification2@Gmail.com';
-    this.objLinkJson.token = 'MIICXAIBAAKBgQCd7Y+f9iozMNVmLGCgoLNbZLhAPoyrstP5Y2TQQG+I8uY1mK83VptlXpfkGXb+4yXcxLjCcDZXB1ds94egfau032F57XNyaNfNvGxekItcyMuRzco513bjvqvCmKS7zfCyAmdyKCT3bQ1/u1zDH8Q2GEBVze6uHVlh8jiySxYCQIDAQABAoGAN8koyMp90aNYXkUixNq/QHNtmlP+ANCkjB2OCPoZ6/hRVXFfw152efJWGR7dp9+5CiofJA/X7W/ad7UHqyMhbcMhU5ai0oIuSrtKdHlxcYX+jgUpAWfCL2MECmvkYjPdf5o5WNkLuKDF1CcJ7iPwRL+kJWIJ5WHm0exVe1UZuECQQD1rPjlKCKjCUZRf+OuOnuiMYFD5quimM1a5nZa5Eqq2/QKiQiWA9mTaOnAojGNgH6GCuiZQfpmQsuUNdeGdX9AkEApJCU4kfbFqtLPQNmeB7XC3ELwOQ0hi3XD2w/swNHOS3AefhptpY+lY4w2eF9Yu6mOerupx/q2uaxzm/dm3th/QJAZtWnYbP8jtpAamu+n8s1D8spPVLu9uGamEFAIyGI8PVDjBRsxfLnSnNe9rY0T8+Vq6WXvs1dAENKIjblmD1NQJAdTgvdQctfXBwBId+U4ua434i0uCRll8qRW4QfEB2K7IPZk+47odljYUgf5mbAQGD5dSq2TGy2osGRoBxnCamQJBAKVvdzvGWMpWsglhD+S+xnQLT1HO8sPbHOBdYKJAOw+BueKHHPEWrgy5fePv4L+tvv/eXC+r7uST7tNSj';
-    this.objLinkJson.meta = '';
+  llamaalgo(){
+    if(this.seleccionado == null){
+      Swal.fire(
+        'Algo esta mal!',
+        'tiene que elegir un status!',
+        'error'
+      )
 
-    this.checkoutServiceService.conectaLinkExternal(this.objLinkJson).subscribe(response => {
-      console.log('esta es la respuesta        ' + response);
-      this.linkData = response.url;
+    }else if(this.seleccionado.localeCompare('Exitoso')===0){      
+      console.log("escogiste exitoso");
+      this.flagNumber =1;      
 
-      this.linkData = this.sanitizer.bypassSecurityTrustResourceUrl(response.url);
-      console.log(response.status);
-      console.log(response.url);
-    });
+    } else if(this.seleccionado.localeCompare('Fallido')===0){
+      console.log('fallido');
+      this.flagNumber=2;
 
+    } else if(this.seleccionado.localeCompare('Rechazado')===0){
+      console.log('escogiste rechazado');
+      this.flagNumber=3;
+    }
+  }
+  exitoso(){      
+  }
+  alerta(){
+    let timerInterval
+      Swal.fire({
+        title: 'Procesando!',
+        html: 'Porfavor espere, estamos procesando su pago',
+        timer: 4000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            const content = Swal.getContent()
+            if (content) {
+              const b = content.querySelector('b')              
+            }
+          }, 100)
+        },
+        onClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      });
+            
+      let  test = 1;
+  }
+
+  checkout() {    
+    if(this.flagNumber===1){
+      this.flagNumber2=1;
+      console.log('aqui esta exitoso');
+
+    }else if(this.flagNumber ===2){
+      this.flagNumber2=2;
+
+    }else if(this.flagNumber===3){
+      this.flagNumber2=3;
+    }else{
+      Swal.fire(
+        'Algo esta mal!',
+        'tiene que elegir un status!',
+        'error'
+      )
+    }
+  }
+  pagar(){
+    if(this.flagNumber2===1){
+      this.alerta();
+      this.router.navigate(["../detalle"]);      
+      console.log("mandar a detalle ok");
+    }else if (this.flagNumber2===2){
+      this.router.navigate(["../detalle"]);      
+      console.log("mandar a detalle fallida");
+
+    }else if(this.flagNumber2===3){
+      this.router.navigate(["../detalle"]);   
+      console.log("mandar a detalle rechazo");   
+
+    }else{
+      Swal.fire(
+        'Algo esta mal!',
+        'tiene que elegir un status!',
+        'error'
+      )
+    }
+    
+    
+    
   }
 
   showInputBoletoAdulto() {
@@ -94,6 +188,6 @@ export class CheckoutCinemexComponent implements OnInit {
     this.totalBoletos = ( this.boletoAdulto * this.precioBoletoAdulto ) +
       ( this.boletoMayor60 * this.precioBoletoMayor60 ) +
       ( this.boletoMenor * this.precioBoletoMenor );
-    this.totalPagar = this.totalBoletos + this.costoServicio;
+    this.totalPagar = this.totalBoletos + this.costoServicio;FormsModule
   }
 }
