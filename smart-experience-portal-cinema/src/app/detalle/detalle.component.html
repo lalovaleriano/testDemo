@@ -1,1 +1,42 @@
-<p>detalle works!</p>
+<div class="jumbotron" style="background-color: black; background-image: url('assets/img/fondo-izquierda.jpeg'), url('assets/img/fondo-derecha.jpeg'); background-position: left top, right top; background-repeat: no-repeat;">
+    <div class="container" style="background-color: white;">
+    <h3> Detalle de compra</h3>
+    <div class="col-12">
+        <span class="text-danger">Título:</span>&nbsp;<span>Aves de Presa (y la Fantabulosa Emancipación de una Harley Quinn)</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Clasificación:</span>&nbsp;<span>B15</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Versión:</span>&nbsp;<span>Español, Tradicional</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Día:</span>&nbsp;<span>Jueves 5 de Marzo</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Horario:</span>&nbsp;<span>02:05 PM</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Cine:</span>&nbsp;<span>Cinemex Centro Telmex</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Sala:</span>&nbsp;<span>6</span>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-danger my-3 mx-3" (click)="regresarPrimerPantalla()">Regresar</button>        
+        
+        <!-- <button class="btn btn-danger my-3 mx-3 "(click) = "content3" >Respuesta JSON</button>         -->
+        <button class="btn btn-primary" (click) = "animateMe()">Mostrar JSON</button>
+        <p [@myfirst] ='state'>sasasasasasasasa</p>  
+      </div>
+      
+        
+      
+</div>
+</div>
+
+
+
+<ng-template #content3 let-c="close"> 
+    <h2>modal</h2>
+</ng-template>

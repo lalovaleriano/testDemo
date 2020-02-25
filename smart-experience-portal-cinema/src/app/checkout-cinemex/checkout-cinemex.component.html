@@ -116,7 +116,7 @@
             </button>
           </div>
           <div class="col-3">
-            <label for="selectOperadora">Selecciona un status</label>         
+            <label for="selectStatus">Selecciona un status</label>         
             <select name="miselect" [(ngModel)]="seleccionado" (click)='llamaalgo()'>
               <option [value]="item" *ngFor="let item of lista">{{item}}</option>
               </select>
@@ -186,28 +186,33 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="cc-name">Nombre en la tarjeta</label>
-                <input type="text" class="form-control" id="name" placeholder="Juan Pérez Pérez" value="Juan Pérez Pérez" >                                
+                <input [(ngModel)]="nombreTarjeta" name="nombreTarjeta" type="text" class="form-control" id="name" placeholder="Juan Pérez Pérez" >                                
               </div>
               <div class="col-md-6 mb-3">
                 <label for="cc-number">Numero de la tarjeta</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" placeholder="1111-2222-3333-4444" value="1111-2222-3333-4444">
+                <input [(ngModel)]="numeroTarjeta" name="numeroTarjeta" type="text" class="form-control" id="cc-number" placeholder="" placeholder="1111-2222-3333-4444">
                 
               </div>
             </div>
             <div class="row">
               <div class="col-md-3 mb-3">
+                <!-- <label for="cc-expiration">Fecha de expiración</label> -->
                 <label for="cc-expiration">Fecha de expiración</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="02/20" value ="02/20" >
+                <input  [(ngModel)]="fechaModel" type="text" class="form-control" id="cc-expiration" placeholder="02/20" name="fecha" >
+                <!-- <input [(ngModel)]="fechaModel" name="first"> -->
                 
               </div>
               <div class="col-md-3 mb-3">
                 <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="123" value="123" >                
+                <input [(ngModel)]="cvv" name="cvv" type="text" class="form-control" id="cc-cvv" placeholder="123" value="123" >                
               </div>
             </div>
             <hr class="mb-2">
             <button class="btn btn-primary btn-lg btn-block" type="submit" (click) = 'pagar()'>Aceptar</button>
           </form>
+
+
+
               
           </div>
         </div>

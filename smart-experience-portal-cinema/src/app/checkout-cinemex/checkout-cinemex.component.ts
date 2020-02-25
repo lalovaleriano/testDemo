@@ -6,6 +6,7 @@ import { CheckoutService } from './checkout.service';
 import { FormsModule } from '@angular/forms';
 import Swal from "sweetalert2";
 import { Router } from '@angular/router';
+import { Status } from './status';
 /* import {CheckoutServiceService} from '../checkout/checkout-service.service';
 import {LinkJson} from '../checkout/link-json'; */
 
@@ -17,17 +18,21 @@ import {LinkJson} from '../checkout/link-json'; */
 export class CheckoutCinemexComponent implements OnInit {
 
   
+  nombreTarjeta:string;
+  numeroTarjeta:string;
+  fechaModel:string;
+  cvv:string
+  flagConfirmar:number;
+  objStatus :Status;
+
+
 
   flagNumber:number;
   flagNumber2:number;
-  testUrl :string = './test.html';
-  lista2:any[]=[
-    {id:1,status:'Exitoso'},
-    {id:21,status:'Fallido'},
-    {id:3,status:'Rechazado'}
-  ];
+  testUrl :string = './test.html';  
   lista:string[]=["Exitoso","Fallido","Rechazado"];
   seleccionado:string;
+
   faVideo = faVideo;
   faCheck = faCheck;
   faPen = faPen;
@@ -78,8 +83,7 @@ export class CheckoutCinemexComponent implements OnInit {
       this.flagNumber=3;
     }
   }
-  exitoso(){      
-  }
+  
   alerta(){
     let timerInterval
       Swal.fire({
@@ -101,9 +105,9 @@ export class CheckoutCinemexComponent implements OnInit {
         }
       }).then((result) => {
         /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
-        }
+        /* if (result.dismiss === Swal.DismissReason.timer) {
+          
+        } */
       });
             
       let  test = 1;
@@ -112,13 +116,16 @@ export class CheckoutCinemexComponent implements OnInit {
   checkout() {    
     if(this.flagNumber===1){
       this.flagNumber2=1;
+      this.flagConfirmar = 1;
       console.log('aqui esta exitoso');
 
     }else if(this.flagNumber ===2){
       this.flagNumber2=2;
+      this.flagConfirmar = 1;
 
     }else if(this.flagNumber===3){
       this.flagNumber2=3;
+      this.flagConfirmar = 1;
     }else{
       Swal.fire(
         'Algo esta mal!',
@@ -128,28 +135,57 @@ export class CheckoutCinemexComponent implements OnInit {
     }
   }
   pagar(){
-    if(this.flagNumber2===1){
-      this.alerta();
-      this.router.navigate(["../detalle"]);      
-      console.log("mandar a detalle ok");
-    }else if (this.flagNumber2===2){
-      this.router.navigate(["../detalle"]);      
-      console.log("mandar a detalle fallida");
+    if(this.flagConfirmar===1){
+      if(this.fechaModel == null|| this.nombreTarjeta ==null
+         || this.numeroTarjeta == null || this.cvv== null){
+        Swal.fire(
+          'Algo esta mal!',
+          'debe llenar todos los campos de pago!',
+          'error'
+        )          
+      }else{
+      if(this.flagNumber2===1){      
+        this.objStatus = new Status();
+        this.objStatus.fecha = this.fechaModel;
+        this.objStatus.nombre = this.nombreTarjeta;
+        this.objStatus.numero = this.numeroTarjeta;
+        this.objStatus.cvv = this.cvv;
 
-    }else if(this.flagNumber2===3){
-      this.router.navigate(["../detalle"]);   
-      console.log("mandar a detalle rechazo");   
+        this.objStatus.titulo = 'Aves de Presa';
+        this.objStatus.clasificacion= 'B15';
+        this.objStatus.version= 'Español, Tradicional';
+        this.objStatus.horario= 'Jueves 5 de Marzo';
+        this.objStatus.cine= '02:05 PM';
+        this.objStatus.sala= 'Cinemex Centro Telmex';
 
+        this.alerta();
+        this.router.navigate(["../detalle"]);              
+  
+      }else if (this.flagNumber2===2){
+        this.router.navigate(["../detalle"]);      
+        console.log("mandar a detalle fallida");
+  
+      }else if(this.flagNumber2===3){
+        this.router.navigate(["../detalle"]);   
+        console.log("mandar a detalle rechazo");   
+  
+      }else{
+        Swal.fire(
+          'Algo esta mal!',
+          'tiene que elegir un status!',
+          'error'
+        )
+      }  
+    }
     }else{
       Swal.fire(
         'Algo esta mal!',
-        'tiene que elegir un status!',
+        'tiene que confirmar!',
         'error'
       )
+
     }
-    
-    
-    
+     
   }
 
   showInputBoletoAdulto() {

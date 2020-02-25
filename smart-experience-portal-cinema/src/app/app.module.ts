@@ -13,6 +13,8 @@ import { FormsModule} from '@angular/forms';
 import { CheckoutCinemexComponent } from './checkout-cinemex/checkout-cinemex.component';
 import { CountdownModule } from 'ngx-countdown';
 import { DetalleComponent } from './detalle/detalle.component';
+import { BrowserAnimationsModule}  from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { DetalleComponent } from './detalle/detalle.component';
     CheckoutCinemexComponent, DetalleComponent,
     
   ],
-  imports: [
+  imports: [    
+    BrowserAnimationsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
