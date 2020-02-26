@@ -1,6 +1,10 @@
 <div class="jumbotron" style="background-color: black; background-image: url('assets/img/fondo-izquierda.jpeg'), url('assets/img/fondo-derecha.jpeg'); background-position: left top, right top; background-repeat: no-repeat;">
     <div class="container" style="background-color: white;">
-    <h3> Detalle de compra</h3>
+      <span>
+        <h3> Detalle de compra</h3>&nbsp;&nbsp;<h3 style="color: darkgreen;">Transacción exitosa</h3>
+
+      </span>
+    
     <div class="col-12">
         <span class="text-danger">Título:</span>&nbsp;<span>Aves de Presa (y la Fantabulosa Emancipación de una Harley Quinn)</span>
       </div>
@@ -22,21 +26,30 @@
       <div class="col-12">
         <span class="text-danger">Sala:</span>&nbsp;<span>6</span>
       </div>
+
+      <div class="col-12">
+        <span class="text-danger">Boletos :</span>&nbsp;<span>2</span>&nbsp;&nbsp; <span>$168.00</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Costo por servicio :</span>&nbsp;<span>$12</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger" style=" font-size: 28px;">Total :</span>&nbsp;<span style="font-size: 28px;" >180.00</span>
+      </div>
+      
+
       <div class="col-12">
         <button class="btn btn-danger my-3 mx-3" (click)="regresarPrimerPantalla()">Regresar</button>        
         
         <!-- <button class="btn btn-danger my-3 mx-3 "(click) = "content3" >Respuesta JSON</button>         -->
-        <button class="btn btn-primary" (click) = "animateMe()">Mostrar JSON</button>
-        <p [@myfirst] ='state'>sasasasasasasasa</p>  
-      </div>
-      
-        
-      
+        <!-- <button class="btn btn-primary" (click) = "ver(content3)">ver  JSON</button>      -->     
+        <button class="btn btn-primary" (click) = "redirecciona()">ver  JSON</button>     
 </div>
 </div>
 
 
 
-<ng-template #content3 let-c="close"> 
-    <h2>modal</h2>
+<ng-template #content3 let-c="close">
+  
+
 </ng-template>

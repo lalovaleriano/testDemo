@@ -5,6 +5,7 @@ import {trigger,state,style,transition,animate,keyframes} from '@angular/animati
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
+
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -29,13 +30,26 @@ export class DetalleComponent implements OnInit {
 
   constructor(
     private router:Router,    
+    private modalService:NgbModal
     
   ) { }
 
   ngOnInit() {    
   }
-  ver(modal){
-    console.log("manda un modal");
+
+ /*  openDialog() {
+    this.dialog.open(DialogDataExampleDialog, {
+      data: {
+        animal: 'panda'
+      }
+    });
+  }
+ */
+redirecciona(){  
+  this.router.navigate(["../json"]);              
+}
+
+  ver(modal){    
     this.modalService.open(modal);
 
   }
@@ -43,9 +57,7 @@ export class DetalleComponent implements OnInit {
     this.state = (this.state=== 'small'?'large':'small');
   }
 
-  regresarPrimerPantalla(){
-
-    console.log("esta regresando a la primer pantalla");
+  regresarPrimerPantalla(){    
     this.router.navigate(["../checkoutcinemex"]);    
 
   }
@@ -54,3 +66,4 @@ export class DetalleComponent implements OnInit {
   }
 
 }
+

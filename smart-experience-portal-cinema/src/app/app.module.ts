@@ -14,13 +14,17 @@ import { CheckoutCinemexComponent } from './checkout-cinemex/checkout-cinemex.co
 import { CountdownModule } from 'ngx-countdown';
 import { DetalleComponent } from './detalle/detalle.component';
 import { BrowserAnimationsModule}  from '@angular/platform-browser/animations';
+import { JsonComponent } from './json/json.component';
+import { FallidoComponent } from './fallido/fallido.component';
+import { RechazadoComponent } from './rechazado/rechazado.component';
 
 
 
 @NgModule({
   declarations: [
+    
     AppComponent,    
-    CheckoutCinemexComponent, DetalleComponent,
+    CheckoutCinemexComponent, DetalleComponent, JsonComponent, FallidoComponent, RechazadoComponent,
     
   ],
   imports: [    

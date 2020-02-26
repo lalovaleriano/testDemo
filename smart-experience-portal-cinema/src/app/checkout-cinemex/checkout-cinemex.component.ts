@@ -162,11 +162,11 @@ export class CheckoutCinemexComponent implements OnInit {
         this.router.navigate(["../detalle"]);              
   
       }else if (this.flagNumber2===2){
-        this.router.navigate(["../detalle"]);      
+        this.router.navigate(["../fallida"]);
         console.log("mandar a detalle fallida");
   
-      }else if(this.flagNumber2===3){
-        this.router.navigate(["../detalle"]);   
+      }else if(this.flagNumber2===3){        
+        this.router.navigate(["../rechazado"]);
         console.log("mandar a detalle rechazo");   
   
       }else{
