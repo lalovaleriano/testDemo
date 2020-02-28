@@ -1,1 +1,45 @@
-<p>rechazado works!</p>
+<div class="jumbotron" style="background-color: black; background-image: url('assets/img/fondo-izquierda.jpeg'), url('assets/img/fondo-derecha.jpeg'); background-position: left top, right top; background-repeat: no-repeat;">
+    <div class="container" style="background-color: white;">
+      <span>
+        <h3> Detalle de compra</h3>&nbsp;&nbsp;<h3 style="color: blue;">Transacción Rechazada</h3>
+
+      </span>
+    
+      <div class="col-12">
+        <span class="text-danger">Id de rechazo :</span>&nbsp;<span> 3232</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Mensaje  </span>&nbsp;<span>Problemas relacionados con el metodod de pago </span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Id de transacción :</span>&nbsp;<span>{{takeNumberReference}}</span>
+      </div>
+      
+
+      <div class="col-12">
+        <button class="btn btn-danger my-3 mx-3" (click)="regresarPrimerPantalla()">Regresar</button>                        
+        <!-- <button class="btn btn-primary" (click) = "redirecciona()">ver  JSON de respuesta </button>      -->
+
+        
+          <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+                  [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Ver JSON de respuesta
+          </button>
+        
+        <div id="collapseExample" [ngbCollapse]="isCollapsed" class="my-8">
+          <div class="card my-3" >
+            <div class="card-body my-3" >
+              {{jsonRespuesta}}
+            </div>
+          </div>
+        </div>
+        
+</div>
+</div>
+
+
+
+<ng-template #content3 let-c="close">
+  
+
+</ng-template>

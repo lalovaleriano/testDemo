@@ -6,7 +6,7 @@
       </span>
     
     <div class="col-12">
-        <span class="text-danger">Título:</span>&nbsp;<span>Aves de Presa (y la Fantabulosa Emancipación de una Harley Quinn)</span>
+        <!-- <span class="text-danger">Título:</span>&nbsp;<span>Aves de Presa (y la Fantabulosa Emancipación de una Harley Quinn)</span>
       </div>
       <div class="col-12">
         <span class="text-danger">Clasificación:</span>&nbsp;<span>B15</span>
@@ -25,16 +25,14 @@
       </div>
       <div class="col-12">
         <span class="text-danger">Sala:</span>&nbsp;<span>6</span>
+      </div> -->
+
+      <div class="col-12">
+        <span class="text-danger">Numero de referencia:</span>&nbsp;<span>{{takeNumberReference}}</span>
       </div>
 
       <div class="col-12">
-        <span class="text-danger">Boletos :</span>&nbsp;<span>2</span>&nbsp;&nbsp; <span>$168.00</span>
-      </div>
-      <div class="col-12">
-        <span class="text-danger">Costo por servicio :</span>&nbsp;<span>$12</span>
-      </div>
-      <div class="col-12">
-        <span class="text-danger" style=" font-size: 28px;">Total :</span>&nbsp;<span style="font-size: 28px;" >180.00</span>
+        <span class="text-danger">Total :</span>&nbsp;<span >{{takeAmount}}</span>
       </div>
       
 
@@ -43,13 +41,26 @@
         
         <!-- <button class="btn btn-danger my-3 mx-3 "(click) = "content3" >Respuesta JSON</button>         -->
         <!-- <button class="btn btn-primary" (click) = "ver(content3)">ver  JSON</button>      -->     
-        <button class="btn btn-primary" (click) = "redirecciona()">ver  JSON</button>     
+
+        <!-- <button class="btn btn-primary" (click) = "redirecciona()">ver  JSON de respuesta </button>      -->
+
+
+        <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+          Ver JSON de respuesta
+        </button>
+
+      <div id="collapseExample" [ngbCollapse]="isCollapsed" class="my-8">
+        <div class="card my-3" >
+          <div class="card-body my-3" >
+            <h4 style="color: red;">JSON de Respuesta</h4>          
+            <pre>{{a}}</pre>
+            <pre>{{b}}</pre>
+            <pre>{{c}}</pre>
+            <pre>{{d}}</pre>
+            <pre>{{e}}</pre>            
+          </div>
+        </div>
+    </div>
 </div>
 </div>
-
-
-
-<ng-template #content3 let-c="close">
-  
-
-</ng-template>

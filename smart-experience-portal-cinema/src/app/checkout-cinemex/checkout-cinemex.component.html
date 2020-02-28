@@ -2,7 +2,8 @@
   <div class="container" style="background-color: white;">
     <nav aria-label="breadcrumb" >
       <ol class="breadcrumb" style="background-color: white;">
-        <li class="breadcrumb-item">Iniciow</li>
+        <!-- <li class="breadcrumb-item" (click)="goInicio()">Inicio</li> -->
+        <button type="button" class="btn btn-info" (click)="goInicio()">inicio</button>
         <li class="breadcrumb-item">AVES DE PRESA (Y LA FANA...</li>
         <li class="breadcrumb-item active" aria-current="page">CHECKOUT</li>
       </ol>
@@ -50,21 +51,21 @@
           <br>
           <div class="row">
             <div class="col-1">
-              <fa-icon [icon]="faPen" (click)="showInputBoletoAdulto()" size="xs"></fa-icon>
+              <fa-icon [icon]="faPen"  size="xs"></fa-icon>
             </div>
             <div class="col-10">
-              <input class="form-control" (change)="updateFieldBoletoAdulto($event)" type="number" [value]="boletoAdulto"  *ngIf="!statusShowInputBoletoAdulto" min="0" >&nbsp;
+              <input class="form-control"  type="number" [value]="boletoAdulto"  *ngIf="!statusShowInputBoletoAdulto" min="0" >&nbsp;
               <span *ngIf="statusShowInputBoletoAdulto">{{boletoAdulto}} Adulto</span><br>
             </div>
             <div class="col-1">
-              <fa-icon [icon]="faPen" (click)="showInputBoletoMayor60()" size="xs"></fa-icon>
+              <fa-icon [icon]="faPen"  size="xs"></fa-icon>
             </div>
             <div class="col-10">
               <input class="form-control" (change)="updateFieldBoletoMayor60($event)" type="number" [value]="boletoMayor60"  *ngIf="!statusShowInputBoletoMayor60" min="0" >&nbsp;
               <span *ngIf="statusShowInputBoletoMayor60">{{boletoMayor60}} Mayor 60</span><br>
             </div>
             <div class="col-1">
-              <fa-icon [icon]="faPen" (click)="showInputBoletoMenor()" size="xs"></fa-icon>
+              <fa-icon [icon]="faPen"  size="xs"></fa-icon>
             </div>
             <div class="col-10">
               <input class="form-control" (change)="updateFieldBoletoMenor($event)" type="number" [value]="boletoMenor"  *ngIf="!statusShowInputBoletoMenor" min="0" >&nbsp;
@@ -84,11 +85,12 @@
           <div class="card-body text-light">
             <span class="h3">Total a pagar:</span>
             <br>
-            <span class="h3">${{totalPagar}}</span>
+            <!-- <span class="h3">${{totalPagar}}</span> -->
+            <span class="h3">${{takeAmount}}</span>
             <br>
             <span class="h6">Tus boletos:</span>
             <br>
-            <span class="h6">${{totalBoletos}}</span>
+            <span class="h6">${{servicioPrice}}</span>
             <br>
             <span class="h6">Costo por servicio:</span>
             <br>

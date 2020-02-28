@@ -33,6 +33,10 @@ export class CheckoutCinemexComponent implements OnInit {
   lista:string[]=["Exitoso","Fallido","Rechazado"];
   seleccionado:string;
 
+  takeAmount :string;
+  takeNumberReference:string;
+
+
   faVideo = faVideo;
   faCheck = faCheck;
   faPen = faPen;
@@ -52,6 +56,7 @@ export class CheckoutCinemexComponent implements OnInit {
   statusShowInputBoletoAdulto = true;
   statusShowInputBoletoMayor60 = true;
   statusShowInputBoletoMenor = true;
+  servicioPrice=0;
 
   constructor(
     private router:Router,
@@ -60,6 +65,14 @@ export class CheckoutCinemexComponent implements OnInit {
       ) { }
 
   ngOnInit() {
+    this.takeAmount = localStorage.getItem('amount');
+    this.takeNumberReference = localStorage.getItem('numberReference');
+    this.suma(this.takeNumberReference);    
+    this.servicioPrice=(+this.takeAmount)-12;
+    
+  }
+  suma(amount):number{
+    return (12-parseFloat(amount));    
   }
 
   llamaalgo(){
@@ -71,15 +84,15 @@ export class CheckoutCinemexComponent implements OnInit {
       )
 
     }else if(this.seleccionado.localeCompare('Exitoso')===0){      
-      console.log("escogiste exitoso");
+      
       this.flagNumber =1;      
 
     } else if(this.seleccionado.localeCompare('Fallido')===0){
-      console.log('fallido');
+      
       this.flagNumber=2;
 
     } else if(this.seleccionado.localeCompare('Rechazado')===0){
-      console.log('escogiste rechazado');
+      
       this.flagNumber=3;
     }
   }
@@ -105,19 +118,18 @@ export class CheckoutCinemexComponent implements OnInit {
         }
       }).then((result) => {
         /* Read more about handling dismissals below */
-        /* if (result.dismiss === Swal.DismissReason.timer) {
-          
+        /* if (result.dismiss === Swal.DismissReason.timer) {          
         } */
       });
             
-      let  test = 1;
+      
   }
 
   checkout() {    
     if(this.flagNumber===1){
       this.flagNumber2=1;
       this.flagConfirmar = 1;
-      console.log('aqui esta exitoso');
+      
 
     }else if(this.flagNumber ===2){
       this.flagNumber2=2;
@@ -163,11 +175,11 @@ export class CheckoutCinemexComponent implements OnInit {
   
       }else if (this.flagNumber2===2){
         this.router.navigate(["../fallida"]);
-        console.log("mandar a detalle fallida");
+        
   
       }else if(this.flagNumber2===3){        
         this.router.navigate(["../rechazado"]);
-        console.log("mandar a detalle rechazo");   
+        
   
       }else{
         Swal.fire(
@@ -187,8 +199,12 @@ export class CheckoutCinemexComponent implements OnInit {
     }
      
   }
+  goInicio(){
+    localStorage.clear();
+    this.router.navigate(["../inicio"]);
+  }
 
-  showInputBoletoAdulto() {
+/*   showInputBoletoAdulto() {
     this.statusShowInputBoletoAdulto = !this.statusShowInputBoletoAdulto;
     console.log('statusShowInputBoletoAdulto: ' + this.statusShowInputBoletoAdulto);
   }
@@ -225,5 +241,5 @@ export class CheckoutCinemexComponent implements OnInit {
       ( this.boletoMayor60 * this.precioBoletoMayor60 ) +
       ( this.boletoMenor * this.precioBoletoMenor );
     this.totalPagar = this.totalBoletos + this.costoServicio;FormsModule
-  }
+  } */
 }

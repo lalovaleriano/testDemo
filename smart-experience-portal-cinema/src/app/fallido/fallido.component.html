@@ -1,1 +1,77 @@
-<p>fallido works!</p>
+<div class="jumbotron" style="background-color: black; background-image: url('assets/img/fondo-izquierda.jpeg'), url('assets/img/fondo-derecha.jpeg'); background-position: left top, right top; background-repeat: no-repeat;">
+    <div class="container" style="background-color: white;">
+      <span>
+        <h3> Detalle de compra</h3>&nbsp;&nbsp;<h3 style="color:red;">Transacción fallida</h3>
+
+      </span>
+    
+    <div class="col-12">
+        <span class="text-danger">Id de error :</span>&nbsp;<span> 32567</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Error </span>&nbsp;<span>Ocurrio un error en el servidor </span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Id de transacción :</span>&nbsp;<span>{{takeNumberReference}}</span>
+      </div>
+      
+
+      <!-- <div class="col-12">          
+        <span class="text-danger">Día:</span>&nbsp;<span>Jueves 5 de Marzo</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Horario:</span>&nbsp;<span>02:05 PM</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Cine:</span>&nbsp;<span>Cinemex Centro Telmex</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Sala:</span>&nbsp;<span>6</span>
+      </div>
+
+      <div class="col-12">
+        <span class="text-danger">Boletos :</span>&nbsp;<span>2</span>&nbsp;&nbsp; <span>$168.00</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger">Costo por servicio :</span>&nbsp;<span>$12</span>
+      </div>
+      <div class="col-12">
+        <span class="text-danger" style=" font-size: 28px;">Total :</span>&nbsp;<span style="font-size: 28px;" >180.00</span>
+      </div> -->
+      
+
+      <div class="col-12">
+        <button class="btn btn-danger my-3 mx-3" (click)="regresarPrimerPantalla()">Regresar</button>        
+        
+        <!-- <button class="btn btn-danger my-3 mx-3 "(click) = "content3" >Respuesta JSON</button>         -->
+        <!-- <button class="btn btn-primary" (click) = "ver(content3)">ver  JSON</button>      -->     
+        <!-- <button class="btn btn-primary" (click) = "redirecciona()">ver  JSON de respuesta </button> -->
+        
+        <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Ver JSON de Respuesta
+          </button>
+
+          <div id="collapseExample" [ngbCollapse]="isCollapsed" class="my-8">
+          <div class="card my-3" >
+            <div class="card-body my-3" >
+              <h4 style="color: red;">JSON de Respuesta</h4>                 
+              <pre>{{a}}</pre>
+              <pre>{{b}}</pre>
+              <pre>{{c}}</pre>
+              <pre>{{d}}</pre>
+              <pre>{{e}}</pre>
+              <pre>{{f}}</pre>
+              <pre>{{g}}</pre>              
+            </div>
+          </div>
+          </div>     
+</div>
+</div>
+
+
+
+<ng-template #content3 let-c="close">
+  
+
+</ng-template>

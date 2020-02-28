@@ -18,16 +18,19 @@ import { JsonComponent } from './json/json.component';
 import { FallidoComponent } from './fallido/fallido.component';
 import { RechazadoComponent } from './rechazado/rechazado.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InicioComponent } from './inicio/inicio.component';
+
 
 
 @NgModule({
   declarations: [
     
     AppComponent,    
-    CheckoutCinemexComponent, DetalleComponent, JsonComponent, FallidoComponent, RechazadoComponent,
+    CheckoutCinemexComponent, DetalleComponent, JsonComponent, FallidoComponent, RechazadoComponent, InicioComponent,
     
   ],
-  imports: [    
+  imports: [ NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
     BrowserModule,

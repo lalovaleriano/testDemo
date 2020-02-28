@@ -3,6 +3,7 @@ import { Status } from '../checkout-cinemex/status';
 import { Router } from '@angular/router'
 import {trigger,state,style,transition,animate,keyframes} from '@angular/animations';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 
 
@@ -20,13 +21,25 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
     ])
   ]
 })
-export class DetalleComponent implements OnInit {
+export class DetalleComponent implements OnInit {  
+  jsonRespuesta:string = '{"message": "Aprobada","operation": "","id": null}';
+  a='{';
+  b='  "message": "Aprobada",';
+  c='  "operation": "",';
+  d='  "id": null';
+  e='}';
+
+
     state:string = 'false';
     fecha:string;
     nombre:string;
     numero:string;
     cvv:string;
+    referenceNumber:string;
+    takeAmount :string;
+    takeNumberReference:string;
     public isCollapsed = true;
+
 
   constructor(
     private router:Router,    
@@ -35,18 +48,16 @@ export class DetalleComponent implements OnInit {
   ) { }
 
   ngOnInit() {    
-  }
+    this.takeAmount = localStorage.getItem('amount');
+    this.takeNumberReference = localStorage.getItem('numberReference');
 
- /*  openDialog() {
-    this.dialog.open(DialogDataExampleDialog, {
-      data: {
-        animal: 'panda'
-      }
-    });
   }
- */
 redirecciona(){  
-  this.router.navigate(["../json"]);              
+  Swal.fire({
+    icon: 'info',
+    title: 'JSON de Respuesta',
+    text: '{"message": "Aprobada","operation": "","id": null}',        
+  })
 }
 
   ver(modal){    
