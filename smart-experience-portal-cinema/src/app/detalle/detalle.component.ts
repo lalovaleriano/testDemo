@@ -22,12 +22,32 @@ import Swal from 'sweetalert2';
   ]
 })
 export class DetalleComponent implements OnInit {  
+
+  /* {
+    "reference": "46b8f322ca6f2a92d85b390bd12e019e",
+    "amount": 32.5,
+    "metadata": "Digital Cinema Luxury Lounger\nThursday, February 13 at 10:45 pm\n",
+    "lastFourNumber": "****3097",
+    "autCode": "019677",
+    "refCode": "000036237223",
+    "statusTransaction": "Aprobada",
+    "products": "products",
+    "date": "2020-03-02 10:42"
+  } */
+
+
+  
   jsonRespuesta:string = '{"message": "Aprobada","operation": "","id": null}';
   a='{';
-  b='  "message": "Aprobada",';
-  c='  "operation": "",';
-  d='  "id": null';
-  e='}';
+  b='  "reference": "46b8f322ca6f2a92d85b390bd12e019e,"';
+  c='  "amount": 32.5,';
+  d='  "metadata": "Digital Cinema Luxury Lounger\nThursday, February 13 at 10:45 pm\n"';
+  e='  "lastFourNumber": "****3097",';
+  f='  "autCode": "019677",';
+  g='  "refCode": "000036237223",';
+  h='  "statusTransaction": "Aprobada",';
+  i='  "date": "2020-03-02 10:42"';
+  j='}';
 
 
     state:string = 'false';

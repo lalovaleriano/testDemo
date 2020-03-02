@@ -45,7 +45,7 @@ export class InicioComponent implements OnInit {
     } else{      
       Swal.fire(
         'Algo esta mal!',
-        'tiene que llenar los campos de amount y referenceNumber',
+        'tiene que llenar los campos de amount y referenceNumber con datos correctos',
         'error'
       ) 
     } 
