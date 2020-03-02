@@ -83,17 +83,13 @@ export class CheckoutCinemexComponent implements OnInit {
         'error'
       )
 
-    }else if(this.seleccionado.localeCompare('Exitoso')===0){      
-      
-      this.flagNumber =1;      
-
-    } else if(this.seleccionado.localeCompare('Fallido')===0){
-      
-      this.flagNumber=2;
-
-    } else if(this.seleccionado.localeCompare('Rechazado')===0){
-      
+    }else if(this.seleccionado.localeCompare('Exitoso')===0){            
+      this.flagNumber =1;            
+    } else if(this.seleccionado.localeCompare('Fallido')===0){      
+      this.flagNumber=2;    
+    } else if(this.seleccionado.localeCompare('Rechazado')===0){      
       this.flagNumber=3;
+      
     }
   }
   
@@ -117,6 +113,7 @@ export class CheckoutCinemexComponent implements OnInit {
           clearInterval(timerInterval)
         }
       }).then((result) => {
+        
         /* Read more about handling dismissals below */
         /* if (result.dismiss === Swal.DismissReason.timer) {          
         } */
@@ -125,7 +122,7 @@ export class CheckoutCinemexComponent implements OnInit {
       
   }
 
-  checkout() {    
+  /* checkout() {    
     if(this.flagNumber===1){
       this.flagNumber2=1;
       this.flagConfirmar = 1;
@@ -145,9 +142,8 @@ export class CheckoutCinemexComponent implements OnInit {
         'error'
       )
     }
-  }
-  pagar(){
-    if(this.flagConfirmar===1){
+  } */
+  pagar(){    
       if(this.fechaModel == null|| this.nombreTarjeta ==null
          || this.numeroTarjeta == null || this.cvv== null){
         Swal.fire(
@@ -156,7 +152,7 @@ export class CheckoutCinemexComponent implements OnInit {
           'error'
         )          
       }else{
-      if(this.flagNumber2===1){      
+      if(this.flagNumber===1){      
         this.objStatus = new Status();
         this.objStatus.fecha = this.fechaModel;
         this.objStatus.nombre = this.nombreTarjeta;
@@ -171,32 +167,16 @@ export class CheckoutCinemexComponent implements OnInit {
         this.objStatus.sala= 'Cinemex Centro Telmex';
 
         this.alerta();
-        this.router.navigate(["../detalle"]);              
+        this.router.navigate(["../detalle"]);      
+                
   
-      }else if (this.flagNumber2===2){
-        this.router.navigate(["../fallida"]);
-        
-  
-      }else if(this.flagNumber2===3){        
-        this.router.navigate(["../rechazado"]);
-        
-  
-      }else{
-        Swal.fire(
-          'Algo esta mal!',
-          'tiene que elegir un status!',
-          'error'
-        )
-      }  
+      }else if (this.flagNumber===2){
+        this.router.navigate(["../fallida"]);        
+      }else if(this.flagNumber===3){        
+        this.router.navigate(["../rechazado"]);          
+      }
     }
-    }else{
-      Swal.fire(
-        'Algo esta mal!',
-        'tiene que confirmar!',
-        'error'
-      )
-
-    }
+    
      
   }
   goInicio(){
