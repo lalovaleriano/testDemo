@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import Swal from "sweetalert2";
 import { Router } from '@angular/router';
 import { Status } from './status';
+import { timer } from 'rxjs';
 /* import {CheckoutServiceService} from '../checkout/checkout-service.service';
 import {LinkJson} from '../checkout/link-json'; */
 
@@ -17,7 +18,7 @@ import {LinkJson} from '../checkout/link-json'; */
 })
 export class CheckoutCinemexComponent implements OnInit {
 
-  
+  nuevoTarjeta:string;
   nombreTarjeta:string;
   numeroTarjeta:string;
   fechaModel:string;
@@ -82,7 +83,6 @@ export class CheckoutCinemexComponent implements OnInit {
         'tiene que elegir un status!',
         'error'
       )
-
     }else if(this.seleccionado.localeCompare('Exitoso')===0){            
       this.flagNumber =1;            
     } else if(this.seleccionado.localeCompare('Fallido')===0){      
@@ -92,8 +92,27 @@ export class CheckoutCinemexComponent implements OnInit {
       
     }
   }
-  
   alerta(){
+    let timerInterval
+      Swal.fire({
+        title: 'Procesando!',
+        html: 'Porfavor espere, estamos procesando su pago',
+        timer: 4000,
+        timerProgressBar: true,        
+        onClose: () => {
+          
+        }
+      }).then((result) => {
+        console.log("asassasasasas");
+        this.router.navigate(["../detalle"]);    
+        
+        /* Read more about handling dismissals below */
+        /* if (result.dismiss === Swal.DismissReason.timer) {          
+        } */
+      });
+  }
+  
+  /* alerta2(){
     let timerInterval
       Swal.fire({
         title: 'Procesando!',
@@ -112,36 +131,7 @@ export class CheckoutCinemexComponent implements OnInit {
         onClose: () => {
           clearInterval(timerInterval)
         }
-      }).then((result) => {
-        
-        /* Read more about handling dismissals below */
-        /* if (result.dismiss === Swal.DismissReason.timer) {          
-        } */
-      });
-            
-      
-  }
-
-  /* checkout() {    
-    if(this.flagNumber===1){
-      this.flagNumber2=1;
-      this.flagConfirmar = 1;
-      
-
-    }else if(this.flagNumber ===2){
-      this.flagNumber2=2;
-      this.flagConfirmar = 1;
-
-    }else if(this.flagNumber===3){
-      this.flagNumber2=3;
-      this.flagConfirmar = 1;
-    }else{
-      Swal.fire(
-        'Algo esta mal!',
-        'tiene que elegir un status!',
-        'error'
-      )
-    }
+      }).then((result) => {              
   } */
   pagar(){    
       if(this.fechaModel == null|| this.nombreTarjeta ==null
@@ -158,6 +148,16 @@ export class CheckoutCinemexComponent implements OnInit {
         this.objStatus.nombre = this.nombreTarjeta;
         this.objStatus.numero = this.numeroTarjeta;
         this.objStatus.cvv = this.cvv;
+        if(this.objStatus.numero.length<16){
+          Swal.fire(
+            'Algo esta mal!',
+            'debe ingresar 16 digitos de su tarjeta!',
+            'error'
+          )          
+          
+          localStorage.setItem('tarjeta',this.objStatus.numero);
+          
+        }
 
         this.objStatus.titulo = 'Aves de Presa';
         this.objStatus.clasificacion= 'B15';
@@ -165,9 +165,11 @@ export class CheckoutCinemexComponent implements OnInit {
         this.objStatus.horario= 'Jueves 5 de Marzo';
         this.objStatus.cine= '02:05 PM';
         this.objStatus.sala= 'Cinemex Centro Telmex';
+        console.log("este es el objeto que se llena ");
+        console.log(this.objStatus);
 
         this.alerta();
-        this.router.navigate(["../detalle"]);      
+          
                 
   
       }else if (this.flagNumber===2){

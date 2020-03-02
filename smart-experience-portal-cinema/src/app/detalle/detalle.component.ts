@@ -5,8 +5,6 @@ import {trigger,state,style,transition,animate,keyframes} from '@angular/animati
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 
-
-
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -23,20 +21,6 @@ import Swal from 'sweetalert2';
 })
 export class DetalleComponent implements OnInit {  
 
-  /* {
-    "reference": "46b8f322ca6f2a92d85b390bd12e019e",
-    "amount": 32.5,
-    "metadata": "Digital Cinema Luxury Lounger\nThursday, February 13 at 10:45 pm\n",
-    "lastFourNumber": "****3097",
-    "autCode": "019677",
-    "refCode": "000036237223",
-    "statusTransaction": "Aprobada",
-    "products": "products",
-    "date": "2020-03-02 10:42"
-  } */
-
-
-  
   jsonRespuesta:string = '{"message": "Aprobada","operation": "","id": null}';
   a='{';
   b='  "reference": "46b8f322ca6f2a92d85b390bd12e019e,"';
